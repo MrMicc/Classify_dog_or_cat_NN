@@ -25,7 +25,7 @@ def show_history(accuracy, val_accuracy, loss, val_loss, epoch_range):
     plt.subplot(1, 2, 2)
     show(range=epoch_range, value=loss, value_2=val_loss, labels=['Traning Loss', 'Validation Loss'],
          legend_position='upper right', title='Training and Validation Loss')
-    plt.savefig('./foo.png')
+    plt.savefig('./foo_dropout.png')
     plt.show()
 
 

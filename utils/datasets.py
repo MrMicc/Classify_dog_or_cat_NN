@@ -24,7 +24,18 @@ class DogsAndCats():
 
     @staticmethod
     def data_prepartion(train_data: bool = True, batch_size: int = 100, img_shape: int = 150, directory: str = ''):
-        image_generation = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
+
+        if train_data:
+            image_generation = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255,
+                                                                               rotation_range=40,
+                                                                               width_shift_range=0.2,
+                                                                               height_shift_range=0.2,
+                                                                               shear_range=0.2,
+                                                                               zoom_range=0.2,
+                                                                               horizontal_flip=True,
+                                                                               fill_mode='nearest')
+        else:
+            image_generation = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
 
         #the class_mode is hardcoded because is only possible to have to class -> Dog or Cat in this project
         return image_generation.flow_from_directory(batch_size=batch_size, directory=directory, shuffle=train_data,
